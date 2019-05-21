@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
         xmlns:local="clr-namespace:ExchangeRate"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -27,7 +32,7 @@
                 <ComboBox Name="DropDown_From" SelectionChanged="DropDown_From_SelectionChanged" 
                           Height="20" Width="60" VerticalAlignment="Top" Margin="0,5,0,0"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <Label Content="To:" VerticalAlignment="Top" FontWeight="Bold"/>
                 <ComboBox Name="DropDown_To" SelectionChanged="DropDown_From_SelectionChanged" 
@@ -39,23 +44,40 @@
                 <StackPanel Grid.Column="2">
 
                     <Label Content="Realtime exchange rate"/>
-                <Label Content="0.000000" Name="lbl_ExchangeRate" FontWeight="Bold"/>
-                <Separator Margin="5,0,5,0"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="PLN" Name="lbl_From" Margin="0,2,0,0"/>
-                    <Button Content="Swap" Margin="5" Name="Swap" Click="Swap_Click"/>
-                    <Label Content="EUR" Name="lbl_To" Margin="0,2,0,0"/>
+                    <Label Content="0.000000" Name="lbl_ExchangeRate" FontWeight="Bold"/>
+                    <Separator Margin="5,0,5,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="PLN" Name="lbl_From" Margin="0,2,0,0"/>
+                        <Button Content="Swap" Margin="5" Name="Swap" Click="Swap_Click"/>
+                        <Label Content="EUR" Name="lbl_To" Margin="0,2,0,0"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
             </GroupBox>
 
 
         </Grid>
-        
-        
-        
 
-       <CheckBox Content="Show Trend Lines" Name="Cbx_Trend" Checked="Cbx_Trend_Checked"
+
+        <sparrow:SparrowChart Name="MyChart" Grid.Row="2" Margin="0,5,0,0">
+            <sparrow:SparrowChart.XAxis>
+                <sparrow:LinearXAxis MaxValue="10"/>
+            </sparrow:SparrowChart.XAxis>
+            <sparrow:SparrowChart.YAxis>
+                <sparrow:LinearYAxis MinValue="-1"/>
+            </sparrow:SparrowChart.YAxis>
+            <sparrow:SparrowChart.Legend>
+                <sparrow:Legend Header="Historic Exchange Chart"/>
+            </sparrow:SparrowChart.Legend>
+
+            <sparrow:SparrowChart.Series>
+                <sparrow:AreaSeries Label="Awesome"/>
+                <sparrow:AreaSeries Label="y=sqrt(x)" Name="LineSqrt" PointsSource="{Binding Path=SqrtPoints}" XPath="X" YPath="Y"/>
+                <sparrow:LineSeries PointsSource="{Binding Path=LnPoints}" XPath="X" YPath="Y" />
+            </sparrow:SparrowChart.Series>
+
+        </sparrow:SparrowChart>
+
+        <CheckBox Content="Show Trend Lines" Name="Cbx_Trend" Checked="Cbx_Trend_Checked"
                       Grid.Row="3" HorizontalAlignment="Right" Margin="5"/>
     </Grid>
 </Window>

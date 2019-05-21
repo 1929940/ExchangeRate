@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,13 @@ namespace ExchangeRate
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Point> SqrtPoints { get; set; }
+        public ObservableCollection<Point> LnPoints { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void DropDown_From_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -34,6 +39,7 @@ namespace ExchangeRate
             if (valFrom == null || valTo == null || (valFrom == valTo)) return;
 
             var tmp = JsonWorker.GetExchangeData(valFrom, valTo);
+
 
             lbl_From.Content = tmp.exchangeData.From_Code;
             lbl_To.Content = tmp.exchangeData.To_Code;
@@ -51,7 +57,7 @@ namespace ExchangeRate
 
         private void Cbx_Trend_Checked(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

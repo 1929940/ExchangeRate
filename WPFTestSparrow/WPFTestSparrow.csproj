@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}</ProjectGuid>
+    <ProjectGuid>{B8130A84-5728-4046-B417-240957879091}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ExchangeRate</RootNamespace>
-    <AssemblyName>ExchangeRate</AssemblyName>
+    <RootNamespace>WPFTestSparrow</RootNamespace>
+    <AssemblyName>WPFTestSparrow</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -98,12 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExchangeRateLibrary\ExchangeRateLibrary.csproj">
-      <Project>{1749b2bd-cfcd-4589-b982-cbf5cbc0a346}</Project>
-      <Name>ExchangeRateLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

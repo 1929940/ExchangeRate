@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ExchangeRateLibrary
 {
     public static class JsonWorker
     {
+
         public static List<String> GetCurrencies()
         {
             string json = new System.Net.WebClient().DownloadString("https://openexchangerates.org/api/currencies.json");
