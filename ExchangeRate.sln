@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRate", "ExchangeRate\ExchangeRate.csproj", "{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateLibrary", "ExchangeRateLibrary\ExchangeRateLibrary.csproj", "{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92EAFF5E-495F-4BC1-BB29-B00BF4EEC71B}
+	EndGlobalSection
+EndGlobal
