@@ -95,7 +95,7 @@
                         <asp:Chart ID="Chart" runat="server" OnLoad="Chart_Load" Width="412px" Palette="Chocolate">
                             <series>
                                 <asp:Series Name="Series1" ChartType="Area">
-                                    <Points>
+<%--                                    <Points>
                                         <asp:DataPoint AxisLabel="2019-05-18" YValues="4.3" />
                                         <asp:DataPoint AxisLabel="2019-05-19" YValues="4.4" />
                                         <asp:DataPoint AxisLabel="2019-05-20" YValues="4.6" />
@@ -107,7 +107,7 @@
                                         <asp:DataPoint AxisLabel="2019-05-26" YValues="4.1" />
                                         <asp:DataPoint AxisLabel="2019-05-27" YValues="1.9" />
 
-                                    </Points>
+                                    </Points>--%>
                             </asp:Series>
                             </series>
                              <chartareas>

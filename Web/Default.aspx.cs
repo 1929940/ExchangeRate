@@ -29,7 +29,7 @@ namespace Web
             lbl_To.Text = tmp.exchangeData.To_Code;
             lbl_ExchangeRate.Text = tmp.exchangeData.ExchangeRate.ToString();
 
-            RemakeChart(JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text), 30);
+            RemakeChart(JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text));
         }
 
         protected void btn_Swap_Click(object sender, ImageClickEventArgs e)
@@ -61,13 +61,25 @@ namespace Web
 
             series1.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Area;
 
-            days = (days == 0) ? input.Count : days;
+            days = (days == 0) ? input.Count : 2*days;
 
-            for (int i = 0; i < 2*days; i++)
+            double min = input[0].Value;
+            double max = input[0].Value;
+
+            for (int i = 0; i < days; i++)
             {
                 series1.Points.AddXY(input[i].Name, input[i].Value);
-            }
 
+                if (min > input[i].Value) min = input[i].Value;
+                if (max < input[i].Value) max = input[i].Value;
+
+            }
+            //Hard Coded but Works
+
+            Chart.ChartAreas["ChartArea1"].AxisY.Minimum = min;
+            Chart.ChartAreas["ChartArea1"].AxisY.Maximum = max;
+
+            //Add a metod to set buttons for days
 
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
 

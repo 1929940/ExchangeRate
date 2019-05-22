@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRate", "ExchangeRate\ExchangeRate.csproj", "{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateWPF", "ExchangeRate\ExchangeRateWPF.csproj", "{AF4F9553-0CD0-47CE-8FF7-47CF07B5FFCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateLibrary", "ExchangeRateLibrary\ExchangeRateLibrary.csproj", "{1749B2BD-CFCD-4589-B982-CBF5CBC0A346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{F79281D4-EBE5-4D23-85EA-9B0EA8DA6533}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateWeb", "Web\ExchangeRateWeb.csproj", "{F79281D4-EBE5-4D23-85EA-9B0EA8DA6533}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
