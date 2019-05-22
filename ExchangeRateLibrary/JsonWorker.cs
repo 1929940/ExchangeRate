@@ -45,5 +45,30 @@ namespace ExchangeRateLibrary
             return output;
         }
 
+        public static List<MyPoint> GetHistoricPoints(string from, string to)
+        {
+            var dict = GetHistoricData(from, to);
+
+            List<MyPoint> output = new List<MyPoint>();
+
+            if (dict == null) return null;
+
+            foreach (var item in dict.Keys)
+            {
+                MyPoint Open = new MyPoint();
+                MyPoint Close = new MyPoint();
+
+                Open.Name = item;
+                Open.Value = dict[item].Open;
+
+                Close.Name = item;
+                Close.Value = dict[item].Close;
+
+                output.Add(Open);
+                output.Add(Close);
+            }
+            return output;
+        }
+
     }
 }
