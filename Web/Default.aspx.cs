@@ -10,10 +10,14 @@ namespace Web
 {
     public partial class Default : System.Web.UI.Page
     {
+        int daysChecked;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RadioButtons_SetEnable();
+            daysChecked = GetRadioButtonCheckedValue();
 
+            //Response.Write("hello world");
         }
         protected void SelectedChanged(object sender, EventArgs e)
         {
@@ -31,7 +35,7 @@ namespace Web
 
             MyPoints.MyPointsList = JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text);
 
-            RemakeChart(MyPoints.MyPointsList,30);
+            RemakeChart(MyPoints.MyPointsList,daysChecked);
         }
 
         protected void btn_Swap_Click(object sender, ImageClickEventArgs e)
@@ -53,17 +57,19 @@ namespace Web
         {
             if (Cbx_ShowTrend.Checked)
             {
-                RemakeChart(MyPoints.MyPointsList, 30);
+                RemakeChart(MyPoints.MyPointsList, daysChecked);
             }
             else
             {
-                RemakeChart(MyPoints.MyPointsList, 30, false);
+                RemakeChart(MyPoints.MyPointsList, daysChecked, false);
             }
         }
 
         protected void RemakeChart(List<MyPoint> input, int days = 0, bool IsChecked = true)
         {
             if (input == null) return;
+
+            RadioButtons_SetEnable();
 
             Chart.Series.Clear();
 
@@ -111,6 +117,51 @@ namespace Web
 
             this.Chart.Series["Series2"].Enabled = IsChecked;
 
+        }
+        protected int GetRadioButtonCheckedValue()
+        {
+            int output;
+
+            if (rdb_30.Checked) output = 30;
+            else if (rdb_60.Checked) output = 60;
+            else if (rdb_90.Checked) output = 90;
+            else output = 0;
+
+            return output;
+        }
+        protected void RadioButtons_SetEnable()
+        {
+            rdb_30.Enabled = false;
+            rdb_60.Enabled = false;
+            rdb_90.Enabled = false;
+
+            if (MyPoints.MyPointsList == null) return;
+
+            // 1 day consists 2 points [open & close]
+            if (MyPoints.MyPointsList.Count > 60) rdb_30.Enabled = true;
+            if (MyPoints.MyPointsList.Count > 120) rdb_60.Enabled = true;
+            if (MyPoints.MyPointsList.Count > 180) rdb_90.Enabled = true;
+        }
+
+
+        protected void rdb_30_CheckedChanged(object sender, EventArgs e)
+        {
+            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
+        }
+
+        protected void rdb_60_CheckedChanged(object sender, EventArgs e)
+        {
+            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
+        }
+
+        protected void rdb_90_CheckedChanged(object sender, EventArgs e)
+        {
+            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
+        }
+
+        protected void rdb_all_CheckedChanged(object sender, EventArgs e)
+        {
+            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
         }
     }
 }

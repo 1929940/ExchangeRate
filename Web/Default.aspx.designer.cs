@@ -94,6 +94,42 @@ namespace Web {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart;
         
         /// <summary>
+        /// rdb_30 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_30;
+        
+        /// <summary>
+        /// rdb_60 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_60;
+        
+        /// <summary>
+        /// rdb_90 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_90;
+        
+        /// <summary>
+        /// rdb_all control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_all;
+        
+        /// <summary>
         /// Cbx_ShowTrend control.
         /// </summary>
         /// <remarks>

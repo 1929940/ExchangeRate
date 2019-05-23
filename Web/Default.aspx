@@ -112,7 +112,17 @@
                     <td class="auto-style9">
                         <table class="auto-style6">
                             <tr>
-                                <td class="auto-style7">
+                                <td><asp:RadioButton ID="rdb_30" runat="server" AutoPostBack="True" Text="30 days" GroupName="SelectedDays" Checked="True" OnCheckedChanged="rdb_30_CheckedChanged"/>
+                                </td>
+                                <td><asp:RadioButton ID="rdb_60" runat="server" AutoPostBack="True" Text="60 days" GroupName="SelectedDays" OnCheckedChanged="rdb_60_CheckedChanged"/>
+                                </td>
+                                <td><asp:RadioButton ID="rdb_90" runat="server" AutoPostBack="True" Text="90 days" GroupName="SelectedDays" OnCheckedChanged="rdb_90_CheckedChanged"/>
+                                </td>
+                                <td><asp:RadioButton ID="rdb_all" runat="server" AutoPostBack="True" Text="All" GroupName="SelectedDays" OnCheckedChanged="rdb_all_CheckedChanged"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style7" colspan="4">
                         <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged" Checked="True"/>
                                 </td>
                             </tr>
