@@ -92,22 +92,10 @@
                 <tr>
                     <td class="auto-style5">
                         <fieldset>
-                        <asp:Chart ID="Chart" runat="server" OnLoad="Chart_Load" Width="412px" Palette="Chocolate">
+                        <asp:Chart ID="Chart" runat="server" OnLoad="Chart_Load" Width="412px" Palette="Light">
                             <series>
                                 <asp:Series Name="Series1" ChartType="Area">
-<%--                                    <Points>
-                                        <asp:DataPoint AxisLabel="2019-05-18" YValues="4.3" />
-                                        <asp:DataPoint AxisLabel="2019-05-19" YValues="4.4" />
-                                        <asp:DataPoint AxisLabel="2019-05-20" YValues="4.6" />
-                                        <asp:DataPoint AxisLabel="2019-05-21" YValues="4.0" />
-                                        <asp:DataPoint AxisLabel="2019-05-22" YValues="1.9" />
-                                        <asp:DataPoint AxisLabel="2019-05-23" YValues="2.4" />
-                                        <asp:DataPoint AxisLabel="2019-05-24" YValues="3.2" />
-                                        <asp:DataPoint AxisLabel="2019-05-25" YValues="4.0" />
-                                        <asp:DataPoint AxisLabel="2019-05-26" YValues="4.1" />
-                                        <asp:DataPoint AxisLabel="2019-05-27" YValues="1.9" />
 
-                                    </Points>--%>
                             </asp:Series>
                             </series>
                              <chartareas>
@@ -125,7 +113,7 @@
                         <table class="auto-style6">
                             <tr>
                                 <td class="auto-style7">
-                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged"/>
+                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged" Checked="True"/>
                                 </td>
                             </tr>
                         </table>

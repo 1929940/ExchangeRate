@@ -50,6 +50,7 @@
     <Compile Include="HistoricExchangeDataRoot.cs" />
     <Compile Include="JsonWorker.cs" />
     <Compile Include="MyPoint.cs" />
+    <Compile Include="MyPoints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

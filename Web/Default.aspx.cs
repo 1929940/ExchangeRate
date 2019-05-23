@@ -29,7 +29,9 @@ namespace Web
             lbl_To.Text = tmp.exchangeData.To_Code;
             lbl_ExchangeRate.Text = tmp.exchangeData.ExchangeRate.ToString();
 
-            RemakeChart(JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text));
+            MyPoints.MyPointsList = JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text);
+
+            RemakeChart(MyPoints.MyPointsList,30);
         }
 
         protected void btn_Swap_Click(object sender, ImageClickEventArgs e)
@@ -49,16 +51,27 @@ namespace Web
 
         protected void Cbx_ShowTrend_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (Cbx_ShowTrend.Checked)
+            {
+                RemakeChart(MyPoints.MyPointsList, 30);
+            }
+            else
+            {
+                RemakeChart(MyPoints.MyPointsList, 30, false);
+            }
         }
 
-        protected void RemakeChart(List<MyPoint> input, int days = 0)
+        protected void RemakeChart(List<MyPoint> input, int days = 0, bool IsChecked = true)
         {
             if (input == null) return;
 
             Chart.Series.Clear();
-            var series1 = new System.Web.UI.DataVisualization.Charting.Series();
 
+            var series1 = new System.Web.UI.DataVisualization.Charting.Series();
+            var series2 = new System.Web.UI.DataVisualization.Charting.Series();
+
+
+            series2.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
             series1.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Area;
 
             days = (days == 0) ? input.Count : 2*days;
@@ -69,21 +82,35 @@ namespace Web
             for (int i = 0; i < days; i++)
             {
                 series1.Points.AddXY(input[i].Name, input[i].Value);
+                series2.Points.AddXY(input[i].Name, input[i].Value);
+
+                if (i > 0)
+                {
+                    if (input[i].Value > input[i - 1].Value)
+                    {
+                        series2.Points[i].Color = System.Drawing.Color.Green;
+                    }
+                    else if (input[i].Value < input[i - 1].Value)
+                    {
+                        series2.Points[i].Color = System.Drawing.Color.Red;
+                    }
+                }
 
                 if (min > input[i].Value) min = input[i].Value;
                 if (max < input[i].Value) max = input[i].Value;
-
             }
-            //Hard Coded but Works
 
             Chart.ChartAreas["ChartArea1"].AxisY.Minimum = min;
             Chart.ChartAreas["ChartArea1"].AxisY.Maximum = max;
 
-            //Add a metod to set buttons for days
 
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
 
             this.Chart.Series.Add(series1);
+            this.Chart.Series.Add(series2); 
+
+            this.Chart.Series["Series2"].Enabled = IsChecked;
+
         }
     }
 }
