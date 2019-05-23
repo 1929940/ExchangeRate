@@ -14,8 +14,14 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             RadioButtons_SetEnable();
-            daysChecked = GetRadioButtonCheckedValue();
+            daysChecked = RadioButtons_GetCheckedValue();
+
+            Lbl_CharError.Text = "Ooops! There appears an error has occured generating the chart. <br /><br />" +
+                "There are two possibilities, both API related. <br /><br />" +
+                "First one: The API provides no historic data for the couple of currencies to draw a chart<br /><br />" +
+                "Second one: The API is limited to 5 calls within 30 seconds, please try again in half a minute<br /><br />";
 
             //Response.Write("hello world");
         }
@@ -28,9 +34,15 @@ namespace Web
 
             var tmp = JsonWorker.GetExchangeData(valFrom, valTo);
 
+            lbl_From.Text = valFrom;
+            lbl_To.Text = valTo;
 
-            lbl_From.Text = tmp.exchangeData.From_Code;
-            lbl_To.Text = tmp.exchangeData.To_Code;
+            if (tmp == null)
+            {
+                lbl_ExchangeRate.Text = "Error";
+                return;
+            }
+
             lbl_ExchangeRate.Text = tmp.exchangeData.ExchangeRate.ToString();
 
             MyPoints.MyPointsList = JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text);
@@ -48,10 +60,6 @@ namespace Web
             SelectedChanged(this, EventArgs.Empty);
         }
 
-        protected void Chart_Load(object sender, EventArgs e)
-        {
-
-        }
 
         protected void Cbx_ShowTrend_CheckedChanged(object sender, EventArgs e)
         {
@@ -67,9 +75,23 @@ namespace Web
 
         protected void RemakeChart(List<MyPoint> input, int days = 0, bool IsChecked = true)
         {
-            if (input == null) return;
+            // Exception Handling
+
+            if (input == null)
+            {
+                Chart.Visible = false;
+                Lbl_CharError.Visible = true;
+
+                return;
+            }
+            Chart.Visible = true;
+            Lbl_CharError.Visible = false;
 
             RadioButtons_SetEnable();
+
+            // Drawing the Chart
+            // One series for data
+            // Another for trend lines
 
             Chart.Series.Clear();
 
@@ -81,14 +103,15 @@ namespace Web
 
             days = (days == 0) ? input.Count : 2*days;
 
-            double min = input[0].Value;
-            double max = input[0].Value;
+            double AxisY_MinValue = input[0].Value;
+            double AxisY_MaxValue = input[0].Value;
 
             for (int i = 0; i < days; i++)
             {
                 series1.Points.AddXY(input[i].Name, input[i].Value);
                 series2.Points.AddXY(input[i].Name, input[i].Value);
 
+                // Determines the colour of the trend line
                 if (i > 0)
                 {
                     if (input[i].Value > input[i - 1].Value)
@@ -101,12 +124,12 @@ namespace Web
                     }
                 }
 
-                if (min > input[i].Value) min = input[i].Value;
-                if (max < input[i].Value) max = input[i].Value;
+                if (AxisY_MinValue > input[i].Value) AxisY_MinValue = input[i].Value;
+                if (AxisY_MaxValue < input[i].Value) AxisY_MaxValue = input[i].Value;
             }
 
-            Chart.ChartAreas["ChartArea1"].AxisY.Minimum = min;
-            Chart.ChartAreas["ChartArea1"].AxisY.Maximum = max;
+            Chart.ChartAreas["ChartArea1"].AxisY.Minimum = AxisY_MinValue;
+            Chart.ChartAreas["ChartArea1"].AxisY.Maximum = AxisY_MaxValue;
 
 
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
@@ -114,12 +137,14 @@ namespace Web
             this.Chart.Series.Add(series1);
             this.Chart.Series.Add(series2); 
 
+            // Decides if trend lines should be visible or not
+
             this.Chart.Series["Series2"].Enabled = IsChecked;
 
         }
         #region RadioBoxes
 
-        protected int GetRadioButtonCheckedValue()
+        protected int RadioButtons_GetCheckedValue()
         {
             int output;
 
@@ -146,7 +171,7 @@ namespace Web
             if (MyPoints.MyPointsList.Count >= 180) rdb_90.Enabled = true;
             if (MyPoints.MyPointsList.Count >= 360) rdb_180.Enabled = true;
         }
-        protected void Rdb_changed(object sender, EventArgs e)
+        protected void Rdb_Changed(object sender, EventArgs e)
         {
             RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
         }

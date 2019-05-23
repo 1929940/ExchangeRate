@@ -10,5 +10,10 @@ namespace ExchangeRateLibrary
     {
         public string Name { get; set; }
         public double Value { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format("Name: {0}, Value: {1}", Name, Value);
+        }
     }
 }

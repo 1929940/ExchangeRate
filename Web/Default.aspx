@@ -89,7 +89,8 @@
                 <tr>
                     <td class="auto-style5">
                         <fieldset>
-                        <asp:Chart ID="Chart" runat="server" OnLoad="Chart_Load" Width="412px" Palette="Light">
+                        <asp:Label ID="Lbl_CharError" runat="server" Width="412px" Visible="false"></asp:Label>
+                        <asp:Chart ID="Chart" runat="server" Width="412px" Palette="Light" Visible="true">
                             <series>
                                 <asp:Series Name="Series1" ChartType="Area">
 
@@ -109,15 +110,15 @@
                     <td class="auto-style9">
                         <table class="auto-style6">
                             <tr>
-                                <td><asp:RadioButton ID="rdb_30" runat="server" AutoPostBack="True" Text="30 days" GroupName="SelectedDays" Checked="True" OnCheckedChanged="Rdb_changed"/>
+                                <td><asp:RadioButton ID="rdb_30" runat="server" AutoPostBack="True" Text="30 days" GroupName="SelectedDays" Checked="True" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
-                                <td><asp:RadioButton ID="rdb_60" runat="server" AutoPostBack="True" Text="60 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_changed"/>
+                                <td><asp:RadioButton ID="rdb_60" runat="server" AutoPostBack="True" Text="60 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
-                                <td><asp:RadioButton ID="rdb_90" runat="server" AutoPostBack="True" Text="90 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_changed"/>
+                                <td><asp:RadioButton ID="rdb_90" runat="server" AutoPostBack="True" Text="90 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
-                                <td><asp:RadioButton ID="rdb_180" runat="server" AutoPostBack="True" Text="180 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_changed"/>
+                                <td><asp:RadioButton ID="rdb_180" runat="server" AutoPostBack="True" Text="180 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
-                                <td><asp:RadioButton ID="rdb_all" runat="server" AutoPostBack="True" Text="All" GroupName="SelectedDays" OnCheckedChanged="Rdb_changed"/>
+                                <td><asp:RadioButton ID="rdb_all" runat="server" AutoPostBack="True" Text="All" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
                             </tr>
                             <tr>
