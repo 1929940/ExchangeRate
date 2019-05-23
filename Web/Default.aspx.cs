@@ -76,7 +76,6 @@ namespace Web
             var series1 = new System.Web.UI.DataVisualization.Charting.Series();
             var series2 = new System.Web.UI.DataVisualization.Charting.Series();
 
-
             series2.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
             series1.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Area;
 
@@ -118,6 +117,8 @@ namespace Web
             this.Chart.Series["Series2"].Enabled = IsChecked;
 
         }
+        #region RadioBoxes
+
         protected int GetRadioButtonCheckedValue()
         {
             int output;
@@ -125,6 +126,7 @@ namespace Web
             if (rdb_30.Checked) output = 30;
             else if (rdb_60.Checked) output = 60;
             else if (rdb_90.Checked) output = 90;
+            else if (rdb_180.Checked) output = 180;
             else output = 0;
 
             return output;
@@ -134,34 +136,22 @@ namespace Web
             rdb_30.Enabled = false;
             rdb_60.Enabled = false;
             rdb_90.Enabled = false;
+            rdb_180.Enabled = false;
 
             if (MyPoints.MyPointsList == null) return;
 
             // 1 day consists 2 points [open & close]
-            if (MyPoints.MyPointsList.Count > 60) rdb_30.Enabled = true;
-            if (MyPoints.MyPointsList.Count > 120) rdb_60.Enabled = true;
-            if (MyPoints.MyPointsList.Count > 180) rdb_90.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 60) rdb_30.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 120) rdb_60.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 180) rdb_90.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 360) rdb_180.Enabled = true;
         }
-
-
-        protected void rdb_30_CheckedChanged(object sender, EventArgs e)
+        protected void Rdb_changed(object sender, EventArgs e)
         {
             RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
         }
 
-        protected void rdb_60_CheckedChanged(object sender, EventArgs e)
-        {
-            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
-        }
+        #endregion
 
-        protected void rdb_90_CheckedChanged(object sender, EventArgs e)
-        {
-            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
-        }
-
-        protected void rdb_all_CheckedChanged(object sender, EventArgs e)
-        {
-            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
-        }
     }
 }

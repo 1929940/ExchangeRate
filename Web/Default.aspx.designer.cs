@@ -121,6 +121,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.RadioButton rdb_90;
         
         /// <summary>
+        /// rdb_180 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_180;
+        
+        /// <summary>
         /// rdb_all control.
         /// </summary>
         /// <remarks>
