@@ -61,13 +61,13 @@
                     <td class="auto-style9" aria-orientation="horizontal">
                         <table class="auto-style2">
                             <tr>
-                                <td class="auto-style4">From: <asp:DropDownList ID="DropDown_From" runat="server" Height="20px" Width="60px" AutoPostBack="True" DataSourceID="ObjectDataSource1" OnSelectedIndexChanged="SelectedChanged">
+                                <td class="auto-style4">From: <asp:DropDownList ID="DropDown_From" runat="server" Height="20px" Width="60px" AutoPostBack="True" DataSourceID="ObjectDataSource1" OnSelectedIndexChanged="SelectedChanged" ToolTip="Select Currency">
                                     </asp:DropDownList>
                                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetCurrencies" TypeName="ExchangeRateLibrary.JsonWorker"></asp:ObjectDataSource>
                                     <br />
                                     <br />
                                 </td>
-                                <td class="auto-style4">To: <asp:DropDownList ID="DropDown_To" runat="server" Height="20px" Width="60px" AutoPostBack="True" DataSourceID="ObjectDataSource1" OnSelectedIndexChanged="SelectedChanged">
+                                <td class="auto-style4">To: <asp:DropDownList ID="DropDown_To" runat="server" Height="20px" Width="60px" AutoPostBack="True" DataSourceID="ObjectDataSource1" OnSelectedIndexChanged="SelectedChanged" ToolTip="Select Currency" Selected="false">
                                     </asp:DropDownList>
                                     <br />
                                     <br />
@@ -78,7 +78,7 @@
                                             <b><asp:Label ID="lbl_ExchangeRate" runat="server" Text="0.00000"></asp:Label></b>
                                             <hr width="125px" align="left"/>
                                         <asp:Label ID="lbl_From" runat="server" Text="AED" Width="30px"></asp:Label>
-                                        <asp:ImageButton ID="btn_swap" runat="server" ImageUrl="~/Swap Icon.png" OnClick="btn_Swap_Click" Width="25px" Height="16px" />
+                                        <asp:ImageButton ID="btn_swap" runat="server" ImageUrl="~/Swap Icon.png" OnClick="Btn_Swap_Click" Width="25px" Height="16px" />
                                         <asp:Label ID="lbl_To" runat="server" Text="AED" Width="30px"></asp:Label>
                                     </fieldset>
                                     </td>
@@ -123,7 +123,7 @@
                             </tr>
                             <tr>
                                 <td class="auto-style7" colspan="5">
-                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged" Checked="True"/>
+                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged"/>
                                 </td>
                             </tr>
                         </table>

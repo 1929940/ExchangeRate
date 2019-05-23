@@ -9,8 +9,6 @@ namespace ExchangeRateLibrary
 {
     public static class JsonWorker
     {
-        public static int JsonCounter = 0;
-
         public static List<String> GetCurrencies()
         {
             string json = new System.Net.WebClient().DownloadString("https://openexchangerates.org/api/currencies.json");
@@ -24,16 +22,7 @@ namespace ExchangeRateLibrary
         {
             string http = String.Format("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={0}&to_currency={1}&apikey=WN02BP1Q1KZR95NO", from, to);
 
-            System.Diagnostics.Debug.WriteLine("\nGetExchangeData: http");
-            System.Diagnostics.Debug.WriteLine(http);
-
             string json = new System.Net.WebClient().DownloadString(http);
-
-            System.Diagnostics.Debug.WriteLine("\nGetExchangeData: json");
-            System.Diagnostics.Debug.WriteLine(json);
-
-            System.Diagnostics.Debug.WriteLine(++JsonCounter);
-
 
             // Alphavantage API calls are limited to 5 per 30 seconds. 
             if (json.Contains("Note") || (json.Contains("Error Message")))
@@ -56,7 +45,6 @@ namespace ExchangeRateLibrary
             string json = new System.Net.WebClient().DownloadString(http);
 
             // API Alphavantage calls are limited to 5 per 30 seconds. 
-            // This will cause an exception
             if (json.Contains("Note") || (json.Contains("Error Message")))
             {
                 System.Diagnostics.Debug.WriteLine(json);

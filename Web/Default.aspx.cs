@@ -23,19 +23,38 @@ namespace Web
                 "First one: The API provides no historic data for the couple of currencies to draw a chart<br /><br />" +
                 "Second one: The API is limited to 5 calls within 30 seconds, please try again in half a minute<br /><br />";
 
-            //Response.Write("hello world");
+            if (!PageInitialized.Initialized)
+            {
+                DropDown_From.SelectedIndex = 116;
+                DropDown_To.SelectedIndex = 46;
+
+                ExchangeRate_MainWorker("PLN", "EUR");
+
+                PageInitialized.Initialized = true;
+            }
         }
         protected void SelectedChanged(object sender, EventArgs e)
         {
             string valFrom = DropDown_From.SelectedItem.Text;
             string valTo = DropDown_To.SelectedItem.Text;
 
-            if (valFrom == null || valTo == null || (valFrom == valTo)) return;
+            ExchangeRate_MainWorker(valFrom, valTo);
 
-            var tmp = JsonWorker.GetExchangeData(valFrom, valTo);
+        }
+        /// <summary>
+        /// This guy organizes all the heavy lifting. 
+        /// </summary>
+        /// <param name="from">Currency Code From</param>
+        /// <param name="to">Currency Code To</param>
+        private void ExchangeRate_MainWorker(string from, string to)
+        {
 
-            lbl_From.Text = valFrom;
-            lbl_To.Text = valTo;
+            if (from == null || to == null || (from == to)) return;
+
+            var tmp = JsonWorker.GetExchangeData(from, to);
+
+            lbl_From.Text = from;
+            lbl_To.Text = to;
 
             if (tmp == null)
             {
@@ -45,35 +64,33 @@ namespace Web
 
             lbl_ExchangeRate.Text = tmp.exchangeData.ExchangeRate.ToString();
 
-            MyPoints.MyPointsList = JsonWorker.GetHistoricPoints(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text);
+            MyPoints.MyPointsList = JsonWorker.GetHistoricPoints(from, to);
 
-            RemakeChart(MyPoints.MyPointsList,daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
         }
 
-        protected void btn_Swap_Click(object sender, ImageClickEventArgs e)
+        protected void Btn_Swap_Click(object sender, ImageClickEventArgs e)
         {
-
             int SelectedIndex = DropDown_From.SelectedIndex;
             DropDown_From.SelectedIndex = DropDown_To.SelectedIndex;
             DropDown_To.SelectedIndex = SelectedIndex;
 
-            SelectedChanged(this, EventArgs.Empty);
+            ExchangeRate_MainWorker(DropDown_From.SelectedItem.Text, DropDown_To.SelectedItem.Text);
         }
-
 
         protected void Cbx_ShowTrend_CheckedChanged(object sender, EventArgs e)
         {
             if (Cbx_ShowTrend.Checked)
             {
-                RemakeChart(MyPoints.MyPointsList, daysChecked);
+                DrawChart(MyPoints.MyPointsList, daysChecked, true);
             }
             else
             {
-                RemakeChart(MyPoints.MyPointsList, daysChecked, false);
+                DrawChart(MyPoints.MyPointsList, daysChecked, false);
             }
         }
 
-        protected void RemakeChart(List<MyPoint> input, int days = 0, bool IsChecked = true)
+        protected void DrawChart(List<MyPoint> input, int days = 0, bool IsChecked = false)
         {
             // Exception Handling
 
@@ -142,6 +159,7 @@ namespace Web
             this.Chart.Series["Series2"].Enabled = IsChecked;
 
         }
+
         #region RadioBoxes
 
         protected int RadioButtons_GetCheckedValue()
@@ -173,7 +191,7 @@ namespace Web
         }
         protected void Rdb_Changed(object sender, EventArgs e)
         {
-            RemakeChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
+            DrawChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
         }
 
         #endregion
