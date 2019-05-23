@@ -24,7 +24,7 @@ namespace ExchangeRateLibrary
 
             string json = new System.Net.WebClient().DownloadString(http);
 
-            // Alphavantage API calls are limited to 5 per 30 seconds. 
+            // Alphavantage API calls are limited to 5 per 30 seconds.
             if (json.Contains("Note") || (json.Contains("Error Message")))
             {
                 System.Diagnostics.Debug.WriteLine(json);
@@ -36,7 +36,7 @@ namespace ExchangeRateLibrary
             return output;
         }
 
-        public static Dictionary<string, HistoricExchangeData> GetHistoricData(string from, string to)
+        private static Dictionary<string, HistoricExchangeData> GetHistoricData(string from, string to)
         {
             Dictionary<string, HistoricExchangeData> output;
 

@@ -41,8 +41,8 @@ namespace ExchangeRate
             var tmp = JsonWorker.GetExchangeData(valFrom, valTo);
 
 
-            lbl_From.Content = tmp.exchangeData.From_Code;
-            lbl_To.Content = tmp.exchangeData.To_Code;
+            lbl_From.Content = valFrom;
+            lbl_To.Content = valTo;
             lbl_ExchangeRate.Content = tmp.exchangeData.ExchangeRate;
         }
 
