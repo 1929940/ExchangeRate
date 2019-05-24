@@ -36,7 +36,7 @@ namespace ExchangeRateLibrary
             return output;
         }
 
-        private static Dictionary<string, HistoricExchangeData> GetHistoricData(string from, string to)
+        public static Dictionary<string, HistoricExchangeData> GetHistoricData(string from, string to)
         {
             Dictionary<string, HistoricExchangeData> output;
 
