@@ -26,9 +26,9 @@ namespace Web
             if (!PageInitialized.Initialized)
             {
                 DropDown_From.SelectedIndex = 116;
-                DropDown_To.SelectedIndex = 46;
+                DropDown_To.SelectedIndex = 150;
 
-                ExchangeRate_MainWorker("PLN", "EUR");
+                ExchangeRate_MainWorker("PLN", "USD");
 
                 PageInitialized.Initialized = true;
             }
@@ -80,17 +80,10 @@ namespace Web
 
         protected void Cbx_ShowTrend_CheckedChanged(object sender, EventArgs e)
         {
-            if (Cbx_ShowTrend.Checked)
-            {
-                DrawChart(MyPoints.MyPointsList, daysChecked, true);
-            }
-            else
-            {
-                DrawChart(MyPoints.MyPointsList, daysChecked, false);
-            }
+            DrawChart(MyPoints.MyPointsList, daysChecked);
         }
 
-        protected void DrawChart(List<MyPoint> input, int days = 0, bool IsChecked = false)
+        protected void DrawChart(List<MyPoint> input, int days = 0)
         {
             // Exception Handling
 
@@ -118,28 +111,46 @@ namespace Web
             series2.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
             series1.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Area;
 
-            days = (days == 0) ? input.Count : 2*days;
+            days = (days == 0) ? input.Count : days;
 
             double AxisY_MinValue = input[0].Value;
             double AxisY_MaxValue = input[0].Value;
 
+            double LastPoint = 0;
+
             for (int i = 0; i < days; i++)
             {
-                series1.Points.AddXY(input[i].Name, input[i].Value);
-                series2.Points.AddXY(input[i].Name, input[i].Value);
-
-                // Determines the colour of the trend line
-                if (i > 0)
+                series1.Points.AddXY(input[i].Date, input[i].Value);
+                if (i % 5 == 0)
                 {
-                    if (input[i].Value > input[i - 1].Value)
+                    LastPoint = input[i].Value;
+                    series2.Points.AddXY(input[i].Date, input[i].Value);
+                    if (i > 0)
                     {
-                        series2.Points[i].Color = System.Drawing.Color.Green;
-                    }
-                    else if (input[i].Value < input[i - 1].Value)
-                    {
-                        series2.Points[i].Color = System.Drawing.Color.Red;
+                        if (input[i].Value < input[i - 5].Value)
+                        {
+                            series2.Points[i / 5].Color = System.Drawing.Color.Green;
+                        }
+                        else if (input[i].Value > input[i - 5].Value)
+                        {
+                            series2.Points[i / 5].Color = System.Drawing.Color.Red;
+                        }
                     }
                 }
+                if (i == days - 1)
+                {
+                    series2.Points.AddXY(input[i].Date, input[i].Value);
+                    if (input[i].Value < LastPoint)
+                    {
+                        series2.Points[series2.Points.Count-1].Color = System.Drawing.Color.Green; // enter last point
+                    }
+                    else if (input[i].Value > LastPoint)
+                    {
+                        series2.Points[series2.Points.Count - 1].Color = System.Drawing.Color.Red;
+                    }
+                }
+
+                // Determines the colour of the trend line
 
                 if (AxisY_MinValue > input[i].Value) AxisY_MinValue = input[i].Value;
                 if (AxisY_MaxValue < input[i].Value) AxisY_MaxValue = input[i].Value;
@@ -148,16 +159,14 @@ namespace Web
             Chart.ChartAreas["ChartArea1"].AxisY.Minimum = AxisY_MinValue;
             Chart.ChartAreas["ChartArea1"].AxisY.Maximum = AxisY_MaxValue;
 
-
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
 
             this.Chart.Series.Add(series1);
-            this.Chart.Series.Add(series2); 
+            this.Chart.Series.Add(series2);
 
             // Decides if trend lines should be visible or not
 
-            this.Chart.Series["Series2"].Enabled = IsChecked;
-
+            Chart.Series["Series2"].Enabled = Cbx_ShowTrend.Checked;
         }
 
         #region RadioBoxes
@@ -183,15 +192,14 @@ namespace Web
 
             if (MyPoints.MyPointsList == null) return;
 
-            // 1 day consists 2 points [open & close]
-            if (MyPoints.MyPointsList.Count >= 60) rdb_30.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 120) rdb_60.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 180) rdb_90.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 360) rdb_180.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 30) rdb_30.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 60) rdb_60.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 90) rdb_90.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 180) rdb_180.Enabled = true;
         }
         protected void Rdb_Changed(object sender, EventArgs e)
         {
-            DrawChart(MyPoints.MyPointsList, daysChecked, Cbx_ShowTrend.Checked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
         }
 
         #endregion

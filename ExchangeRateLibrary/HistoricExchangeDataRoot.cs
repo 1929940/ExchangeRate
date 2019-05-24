@@ -10,6 +10,6 @@ namespace ExchangeRateLibrary
     public class HistoricExchangeDataRoot
     {
         [JsonProperty(PropertyName = "Time Series FX (Daily)")]
-        public Dictionary<string, HistoricExchangeData> Result { get; set; }
+        public Dictionary<DateTime, HistoricExchangeData> Result { get; set; }
     }
 }

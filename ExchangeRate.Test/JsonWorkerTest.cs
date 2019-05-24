@@ -297,7 +297,7 @@ namespace ExchangeRate.Test
 
             foreach (var item in myPoints)
             {
-                actual.Add(item.Name);
+                actual.Add(item.Date);
             }
             Assert.DoesNotContain(actual, x => (x == null));
         }

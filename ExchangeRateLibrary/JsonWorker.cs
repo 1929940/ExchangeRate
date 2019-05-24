@@ -36,9 +36,9 @@ namespace ExchangeRateLibrary
             return output;
         }
 
-        public static Dictionary<string, HistoricExchangeData> GetHistoricData(string from, string to)
+        public static Dictionary<DateTime, HistoricExchangeData> GetHistoricData(string from, string to)
         {
-            Dictionary<string, HistoricExchangeData> output;
+            Dictionary<DateTime, HistoricExchangeData> output;
 
             string http = String.Format("https://www.alphavantage.co/query?function=FX_DAILY&from_symbol={0}&to_symbol={1}&apikey=WN02BP1Q1KZR95NO", from, to);
 
@@ -67,16 +67,16 @@ namespace ExchangeRateLibrary
 
             foreach (var item in dict.Keys)
             {
-                MyPoint Open = new MyPoint();
+                //MyPoint Open = new MyPoint();
                 MyPoint Close = new MyPoint();
 
-                Open.Name = item;
-                Open.Value = dict[item].Open;
+                //Open.Date = item;
+                //Open.Value = dict[item].Open;
 
-                Close.Name = item;
+                Close.Date = item;
                 Close.Value = dict[item].Close;
 
-                output.Add(Open);
+                //output.Add(Open);
                 output.Add(Close);
             }
 

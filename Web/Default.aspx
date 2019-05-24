@@ -110,7 +110,7 @@
                     <td class="auto-style9">
                         <table class="auto-style6">
                             <tr>
-                                <td><asp:RadioButton ID="rdb_30" runat="server" AutoPostBack="True" Text="30 days" GroupName="SelectedDays" Checked="True" OnCheckedChanged="Rdb_Changed"/>
+                                <td><asp:RadioButton ID="rdb_30" runat="server" AutoPostBack="True" Text="30 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
                                 <td><asp:RadioButton ID="rdb_60" runat="server" AutoPostBack="True" Text="60 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
@@ -118,12 +118,12 @@
                                 </td>
                                 <td><asp:RadioButton ID="rdb_180" runat="server" AutoPostBack="True" Text="180 days" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
                                 </td>
-                                <td><asp:RadioButton ID="rdb_all" runat="server" AutoPostBack="True" Text="All" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed"/>
+                                <td><asp:RadioButton ID="rdb_all" runat="server" AutoPostBack="True" Text="All" GroupName="SelectedDays" OnCheckedChanged="Rdb_Changed" Checked="True"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style7" colspan="5">
-                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged"/>
+                        <asp:CheckBox ID="Cbx_ShowTrend" runat="server" Text="Show Trend Lines" AutoPostBack="True" OnCheckedChanged="Cbx_ShowTrend_CheckedChanged" Checked="True"/>
                                 </td>
                             </tr>
                         </table>

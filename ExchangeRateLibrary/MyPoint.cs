@@ -8,12 +8,12 @@ namespace ExchangeRateLibrary
 {
     public class MyPoint
     {
-        public string Name { get; set; }
+        public DateTime Date { get; set; }
         public double Value { get; set; }
 
         public override string ToString()
         {
-            return String.Format("Name: {0}, Value: {1}", Name, Value);
+            return String.Format("Name: {0}, Value: {1}", Date, Value);
         }
     }
 }
