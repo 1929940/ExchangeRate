@@ -23,15 +23,6 @@ namespace Web
                 "First one: The API provides no historic data for the couple of currencies to draw a chart<br /><br />" +
                 "Second one: The API is limited to 5 calls within 30 seconds, please try again in half a minute<br /><br />";
 
-            //if (!PageInitialized.Initialized)
-            //{
-            //    DropDown_From.SelectedIndex = 116;
-            //    DropDown_To.SelectedIndex = 150;
-
-            //    ExchangeRate_MainWorker("PLN", "USD");
-
-            //    PageInitialized.Initialized = true;
-            //}
             if (!IsPostBack)
             {
                 DropDown_From.SelectedIndex = 116;
@@ -67,6 +58,10 @@ namespace Web
             if (tmp == null)
             {
                 lbl_ExchangeRate.Text = "Error";
+
+                Chart.Visible = false;
+                Lbl_CharError.Visible = true;
+
                 return;
             }
 
@@ -163,12 +158,27 @@ namespace Web
                 if (AxisY_MaxValue < input[i].Value) AxisY_MaxValue = input[i].Value;
             }
 
-            Chart.ChartAreas["ChartArea1"].AxisY.Minimum = AxisY_MinValue;
-            Chart.ChartAreas["ChartArea1"].AxisY.Maximum = AxisY_MaxValue;
+            System.Diagnostics.Debug.WriteLine("AxisY Values");
+            System.Diagnostics.Debug.WriteLine("Max: {0}", AxisY_MaxValue);
+            System.Diagnostics.Debug.WriteLine("Min: {0}", AxisY_MinValue);
+
+            if (AxisY_MaxValue != AxisY_MinValue)
+            {
+                Chart.ChartAreas["ChartArea1"].AxisY.Minimum = AxisY_MinValue;
+                Chart.ChartAreas["ChartArea1"].AxisY.Maximum = AxisY_MaxValue;
+            }
+            else if((AxisY_MaxValue == 0) && (AxisY_MinValue == 0))
+            {
+                Chart.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
+                Chart.ChartAreas["ChartArea1"].AxisY.Maximum = 1;
+            }
+            else
+            {
+                Chart.ChartAreas["ChartArea1"].AxisY.Minimum = AxisY_MinValue/2;
+                Chart.ChartAreas["ChartArea1"].AxisY.Maximum = 2*AxisY_MaxValue;
+            }
 
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
-
-            //Chart.ChartAreas["ChartArea1"].Position = new System.Web.UI.DataVisualization.Charting.ElementPosition(0, 0, 80, 90);
 
             this.Chart.Series.Add(series1);
             this.Chart.Series.Add(series2);
@@ -180,7 +190,7 @@ namespace Web
             Chart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Format = "dd.MM.yy";
 
             //How many decimal places?
-            //Chart.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "######.########";
+            Chart.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "0.####";
         }
 
         #region RadioBoxes
