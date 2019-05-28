@@ -206,22 +206,22 @@ namespace ExchangeRate.Test
             Assert.NotEmpty(actual.Values);
         }
 
-        [Theory]
-        [InlineData("PLN", "JPY")]
-        [InlineData("PLN", "EUR")]
-        public void GetHistoricData_ShouldWork_NoKeysAreNull(string from, string to)
-        {
-            var pairs = JsonWorker.GetHistoricData(from, to);
+        //[Theory]
+        //[InlineData("PLN", "JPY")]
+        //[InlineData("PLN", "EUR")]
+        //public void GetHistoricData_ShouldWork_NoKeysAreNull(string from, string to)
+        //{
+        //    var pairs = JsonWorker.GetHistoricData(from, to);
 
-            List<string> tmp = new List<string>();
+        //    List<DateTime> actual = new List<DateTime>();
 
-            foreach (var item in pairs.Keys)
-            {
-                tmp.Add(item);
-            }
+        //    foreach (var item in pairs.Keys)
+        //    {
+        //        actual.Add(item);
+        //    }
 
-            Assert.DoesNotContain(null, tmp);
-        }
+        //    Assert.DoesNotContain(null, actual);
+        //}
 
         [Theory]
         [InlineData("PLN", "JPY")]
@@ -293,7 +293,7 @@ namespace ExchangeRate.Test
         {
             var myPoints = JsonWorker.GetHistoricPoints(from, to);
 
-            List<string> actual = new List<string>();
+            List<DateTime> actual = new List<DateTime>();
 
             foreach (var item in myPoints)
             {

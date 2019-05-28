@@ -23,15 +23,23 @@ namespace Web
                 "First one: The API provides no historic data for the couple of currencies to draw a chart<br /><br />" +
                 "Second one: The API is limited to 5 calls within 30 seconds, please try again in half a minute<br /><br />";
 
-            if (!PageInitialized.Initialized)
+            //if (!PageInitialized.Initialized)
+            //{
+            //    DropDown_From.SelectedIndex = 116;
+            //    DropDown_To.SelectedIndex = 150;
+
+            //    ExchangeRate_MainWorker("PLN", "USD");
+
+            //    PageInitialized.Initialized = true;
+            //}
+            if (!IsPostBack)
             {
                 DropDown_From.SelectedIndex = 116;
                 DropDown_To.SelectedIndex = 150;
 
                 ExchangeRate_MainWorker("PLN", "USD");
-
-                PageInitialized.Initialized = true;
             }
+
         }
         protected void SelectedChanged(object sender, EventArgs e)
         {
@@ -150,7 +158,6 @@ namespace Web
                     }
                 }
 
-                // Determines the colour of the trend line
 
                 if (AxisY_MinValue > input[i].Value) AxisY_MinValue = input[i].Value;
                 if (AxisY_MaxValue < input[i].Value) AxisY_MaxValue = input[i].Value;
@@ -161,12 +168,19 @@ namespace Web
 
             Chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
 
+            //Chart.ChartAreas["ChartArea1"].Position = new System.Web.UI.DataVisualization.Charting.ElementPosition(0, 0, 80, 90);
+
             this.Chart.Series.Add(series1);
             this.Chart.Series.Add(series2);
 
             // Decides if trend lines should be visible or not
 
             Chart.Series["Series2"].Enabled = Cbx_ShowTrend.Checked;
+
+            Chart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Format = "dd.MM.yy";
+
+            //How many decimal places?
+            //Chart.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "######.########";
         }
 
         #region RadioBoxes

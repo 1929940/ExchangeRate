@@ -92,7 +92,7 @@
                         <asp:Label ID="Lbl_CharError" runat="server" Width="412px" Visible="false"></asp:Label>
                         <asp:Chart ID="Chart" runat="server" Width="412px" Palette="Light" Visible="true">
                             <series>
-                                <asp:Series Name="Series1" ChartType="Area">
+                                <asp:Series Name="Series1" ChartType="Area" ChartArea="ChartArea1">
 
                             </asp:Series>
                             </series>
