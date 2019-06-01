@@ -103,49 +103,49 @@ namespace Web {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart;
         
         /// <summary>
-        /// Button2 control.
+        /// rdb_30 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button rdb_30;
         
         /// <summary>
-        /// Button3 control.
+        /// rdb_60 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button rdb_60;
         
         /// <summary>
-        /// Button4 control.
+        /// rdb_90 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button rdb_90;
         
         /// <summary>
-        /// Button5 control.
+        /// rdb_180 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Button rdb_180;
         
         /// <summary>
-        /// Button7 control.
+        /// rdb_all control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Button rdb_all;
         
         /// <summary>
         /// Cbx_ShowTrend control.

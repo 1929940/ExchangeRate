@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Models;
 
 namespace Web
 {
@@ -16,7 +17,7 @@ namespace Web
         {
 
             RadioButtons_SetEnable();
-            daysChecked = RadioButtons_GetCheckedValue();
+            //daysChecked = RadioButtons_GetCheckedValue();
 
             Lbl_CharError.Text = "Ooops! There appears an error has occured generating the chart. <br /><br />" +
                 "There are two possibilities, both API related. <br /><br />" +
@@ -25,6 +26,8 @@ namespace Web
 
             if (!IsPostBack)
             {
+                daysChecked = ActivateRadioButton(Btns.d0);
+
                 DropDown_From.SelectedIndex = 116;
                 DropDown_To.SelectedIndex = 150;
 
@@ -83,6 +86,7 @@ namespace Web
 
         protected void Cbx_ShowTrend_CheckedChanged(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("daysChecked: {0}", daysChecked);
             DrawChart(MyPoints.MyPointsList, daysChecked);
         }
 
@@ -158,9 +162,9 @@ namespace Web
                 if (AxisY_MaxValue < input[i].Value) AxisY_MaxValue = input[i].Value;
             }
 
-            System.Diagnostics.Debug.WriteLine("AxisY Values");
-            System.Diagnostics.Debug.WriteLine("Max: {0}", AxisY_MaxValue);
-            System.Diagnostics.Debug.WriteLine("Min: {0}", AxisY_MinValue);
+            //System.Diagnostics.Debug.WriteLine("AxisY Values");
+            //System.Diagnostics.Debug.WriteLine("Max: {0}", AxisY_MaxValue);
+            //System.Diagnostics.Debug.WriteLine("Min: {0}", AxisY_MinValue);
 
             if (AxisY_MaxValue != AxisY_MinValue)
             {
@@ -195,40 +199,120 @@ namespace Web
 
         #region RadioBoxes
 
-        protected int RadioButtons_GetCheckedValue()
-        {
+        //protected int RadioButtons_GetCheckedValue()
+        //{
 
-            // SUBJECT TO CHANGE!!
-            int output = 0;
+        //    // SUBJECT TO CHANGE!!
+        //    int output = 0;
 
-            //if (rdb_30.Checked) output = 30;
-            //else if (rdb_60.Checked) output = 60;
-            //else if (rdb_90.Checked) output = 90;
-            //else if (rdb_180.Checked) output = 180;
-            //else output = 0;
+        //    //if (rdb_30.Checked) output = 30;
+        //    //else if (rdb_60.Checked) output = 60;
+        //    //else if (rdb_90.Checked) output = 90;
+        //    //else if (rdb_180.Checked) output = 180;
+        //    //else output = 0;
 
-            return output;
-        }
+        //    return output;
+        //}
         protected void RadioButtons_SetEnable()
         {
-            //rdb_30.Enabled = false;
-            //rdb_60.Enabled = false;
-            //rdb_90.Enabled = false;
-            //rdb_180.Enabled = false;
+            rdb_30.Enabled = false;
+            rdb_60.Enabled = false;
+            rdb_90.Enabled = false;
+            rdb_180.Enabled = false;
 
-            //if (MyPoints.MyPointsList == null) return;
+            if (MyPoints.MyPointsList == null) return;
 
-            //if (MyPoints.MyPointsList.Count >= 30) rdb_30.Enabled = true;
-            //if (MyPoints.MyPointsList.Count >= 60) rdb_60.Enabled = true;
-            //if (MyPoints.MyPointsList.Count >= 90) rdb_90.Enabled = true;
-            //if (MyPoints.MyPointsList.Count >= 180) rdb_180.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 30) rdb_30.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 60) rdb_60.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 90) rdb_90.Enabled = true;
+            if (MyPoints.MyPointsList.Count >= 180) rdb_180.Enabled = true;
         }
-        protected void Rdb_Changed(object sender, EventArgs e)
+        //protected void Rdb_Changed(object sender, EventArgs e)
+        //{
+        //    DrawChart(MyPoints.MyPointsList, daysChecked);
+        //}
+        protected int ActivateRadioButton(Btns btn)
         {
-            DrawChart(MyPoints.MyPointsList, daysChecked);
+            // disable all buttons <set css to gray>
+
+            rdb_30.CssClass = "btn btn-secondary btn-space";
+            rdb_60.CssClass = "btn btn-secondary btn-space";
+            rdb_90.CssClass = "btn btn-secondary btn-space";
+            rdb_180.CssClass = "btn btn-secondary btn-space";
+            rdb_all.CssClass = "btn btn-secondary btn-space";
+
+            // if btn equals <set css to blue>
+
+            if (btn == Btns.d0)
+            {
+                rdb_all.CssClass = "btn btn-primary btn-space";
+                return 0;
+            }
+            else if(btn == Btns.d30)
+            {
+                rdb_30.CssClass = "btn btn-primary btn-space";
+                return 30;
+            }
+            else if (btn == Btns.d60)
+            {
+                rdb_60.CssClass = "btn btn-primary btn-space";
+                return 60;
+            }
+            else if (btn == Btns.d90)
+            {
+                rdb_90.CssClass = "btn btn-primary btn-space";
+                return 90;
+            }
+            else if (btn == Btns.d180)
+            {
+                rdb_180.CssClass = "btn btn-primary btn-space";
+                return 180;
+            }
+
+            // then activate and return nr of days
+            // in even assign to dayschecked.
+
+            // write intial launch
+            // that will be activateradiobutton(90) in postback
+
+            return 0;
         }
 
         #endregion
 
+        protected void rdb_30_Click(object sender, EventArgs e)
+        {
+            daysChecked = ActivateRadioButton(Btns.d30);
+            System.Diagnostics.Debug.WriteLine("daysChecked in method: {0}", daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
+        }
+
+        protected void rdb_60_Click(object sender, EventArgs e)
+        {
+            daysChecked = ActivateRadioButton(Btns.d60);
+            System.Diagnostics.Debug.WriteLine("daysChecked in method: {0}", daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
+        }
+
+        protected void rdb_90_Click(object sender, EventArgs e)
+        {
+            daysChecked = ActivateRadioButton(Btns.d90);
+            System.Diagnostics.Debug.WriteLine("daysChecked in method: {0}", daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
+        }
+
+        protected void rdb_180_Click(object sender, EventArgs e)
+        {
+            daysChecked = ActivateRadioButton(Btns.d180);
+            System.Diagnostics.Debug.WriteLine("daysChecked in method: {0}", daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
+        }
+
+        protected void rdb_all_Click(object sender, EventArgs e)
+        {
+            daysChecked = ActivateRadioButton(Btns.d0);
+            System.Diagnostics.Debug.WriteLine("daysChecked in method: {0}", daysChecked);
+            DrawChart(MyPoints.MyPointsList, daysChecked);
+        }
     }
 }

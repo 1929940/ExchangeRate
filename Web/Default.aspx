@@ -97,11 +97,11 @@
 
                 <div class="col-2 col-md-1 marginLeft chartButtonPadding overallBG border-right">
                     <div class="btn-group-vertical">
-                        <asp:Button ID="Button2" runat="server" Text="30D" Width="60" CssClass="btn btn-secondary btn-space" />
-                        <asp:Button ID="Button3" runat="server" Text="60D" Width="60" CssClass="btn btn-secondary btn-space" />
-                        <asp:Button ID="Button4" runat="server" Text="90D" Width="60" CssClass="btn btn-secondary btn-space" />
-                        <asp:Button ID="Button5" runat="server" Text="180D" Width="60" CssClass="btn btn-secondary btn-space" />
-                        <asp:Button ID="Button7" runat="server" Text="All" Width="60" CssClass="btn btn-secondary btn-space" />
+                        <asp:Button ID="rdb_30" runat="server" Text="30D" Width="60"  CssClass="btn btn-secondary btn-space" OnClick="rdb_30_Click" />
+                        <asp:Button ID="rdb_60" runat="server" Text="60D" Width="60"  CssClass="btn btn-secondary btn-space" OnClick="rdb_60_Click" />
+                        <asp:Button ID="rdb_90" runat="server" Text="90D" Width="60"  CssClass="btn btn-secondary btn-space" OnClick="rdb_90_Click"/>
+                        <asp:Button ID="rdb_180" runat="server" Text="180D" Width="60" CssClass="btn btn-secondary btn-space" OnClick="rdb_180_Click" />
+                        <asp:Button ID="rdb_all" runat="server" Text="All" Width="60"  CssClass="btn btn-secondary btn-space" OnClick="rdb_all_Click" />
                     </div>
                 </div>
             </div>

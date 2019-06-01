@@ -124,6 +124,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ButtonsEnum.cs" />
     <Compile Include="PageInitialized.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
