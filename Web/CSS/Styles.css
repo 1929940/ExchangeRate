@@ -1,0 +1,111 @@
+﻿.overallBG {
+    background-color: whitesmoke;
+}
+
+.paddingLeft {
+    padding-left: 60px;
+}
+
+.smallFont {
+    font-size: 10px;
+}
+
+.margin1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+/*Card Style*/
+
+@media (min-width: 1600px) {
+    .MyCard {
+        width: 76% !important;
+        margin-left: 0px !important;
+        background: rgba(31, 33, 31, 0.05);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1599px) {
+    .MyCard {
+        width: 84% !important;
+        margin-left: 0px !important;
+        background: rgba(31, 33, 31, 0.05);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 999px) {
+    .MyCard {
+        width: 95% !important;
+        margin-left: 0px !important;
+        background: rgba(31, 33, 31, 0.05);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.borderColor {
+    border-color: black !important;
+}
+
+
+/*CheckBox Style*/
+
+@media (max-width: 768px) {
+    .MyCheckBox {
+        padding-right: 10%;
+    }
+}
+
+@media (min-width: 767px) {
+    .MyCheckBox {
+        padding-right: 0px;
+    }
+}
+
+/*DropDown*/
+
+.DropDownRight {
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+/*Chart and Buttons*/
+
+.btn-secondary {
+    background-color: rgba(31, 33, 31, 0.1) !important;
+    color: black !important;
+}
+
+.btn-space {
+    margin-bottom: 4px !important;
+    border-width: 0px;
+}
+
+.chartButtonPadding {
+    padding: 25px;
+}
+
+.marginLeft {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.marginRight {
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.chart {
+    width: 106.5% !important;
+    height: 260px !important;
+}

@@ -197,29 +197,31 @@ namespace Web
 
         protected int RadioButtons_GetCheckedValue()
         {
-            int output;
 
-            if (rdb_30.Checked) output = 30;
-            else if (rdb_60.Checked) output = 60;
-            else if (rdb_90.Checked) output = 90;
-            else if (rdb_180.Checked) output = 180;
-            else output = 0;
+            // SUBJECT TO CHANGE!!
+            int output = 0;
+
+            //if (rdb_30.Checked) output = 30;
+            //else if (rdb_60.Checked) output = 60;
+            //else if (rdb_90.Checked) output = 90;
+            //else if (rdb_180.Checked) output = 180;
+            //else output = 0;
 
             return output;
         }
         protected void RadioButtons_SetEnable()
         {
-            rdb_30.Enabled = false;
-            rdb_60.Enabled = false;
-            rdb_90.Enabled = false;
-            rdb_180.Enabled = false;
+            //rdb_30.Enabled = false;
+            //rdb_60.Enabled = false;
+            //rdb_90.Enabled = false;
+            //rdb_180.Enabled = false;
 
-            if (MyPoints.MyPointsList == null) return;
+            //if (MyPoints.MyPointsList == null) return;
 
-            if (MyPoints.MyPointsList.Count >= 30) rdb_30.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 60) rdb_60.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 90) rdb_90.Enabled = true;
-            if (MyPoints.MyPointsList.Count >= 180) rdb_180.Enabled = true;
+            //if (MyPoints.MyPointsList.Count >= 30) rdb_30.Enabled = true;
+            //if (MyPoints.MyPointsList.Count >= 60) rdb_60.Enabled = true;
+            //if (MyPoints.MyPointsList.Count >= 90) rdb_90.Enabled = true;
+            //if (MyPoints.MyPointsList.Count >= 180) rdb_180.Enabled = true;
         }
         protected void Rdb_Changed(object sender, EventArgs e)
         {

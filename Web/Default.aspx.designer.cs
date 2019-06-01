@@ -103,49 +103,49 @@ namespace Web {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart;
         
         /// <summary>
-        /// rdb_30 control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_30;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// rdb_60 control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_60;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// rdb_90 control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_90;
+        protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
-        /// rdb_180 control.
+        /// Button5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_180;
+        protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
-        /// rdb_all control.
+        /// Button7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_all;
+        protected global::System.Web.UI.WebControls.Button Button7;
         
         /// <summary>
         /// Cbx_ShowTrend control.
